@@ -2,19 +2,25 @@ import mongoose from '../../database';
 
 const DisciplineSchema = new mongoose.Schema({
   idTeacher: {
-    type: String
+    type: String,
   },
-  conteudo: [{
-    name: {
-      type: String
+  conteudo: [
+    {
+      name: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
     },
-    title: {
-      type: String,
-    },
-    description: {
-      type: String
-    }
-  }]
+  ],
+
+  numberStudents: {
+    type: Number,
+  },
 });
 
 const Discipline = mongoose.model('Discipline', DisciplineSchema);
