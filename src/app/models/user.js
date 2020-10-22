@@ -2,6 +2,11 @@ import mongoose from '../../database';
 
 
 const UserSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    allowNull: false,
+    autoIncrement: true,
+  },
   firstname: {
     type: String,
     required: true,
