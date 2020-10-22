@@ -15,3 +15,4 @@ export default mongoose;
 
 
 
+//mongodb+srv://<username>:<password>@cluster0.qtbrz.mongodb.net/<dbname>?retryWrites=true&w=majority
