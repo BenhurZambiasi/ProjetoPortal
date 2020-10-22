@@ -2,11 +2,6 @@ import mongoose from '../../database';
 
 
 const UserSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    allowNull: false,
-    autoIncrement: true,
-  },
   firstname: {
     type: String,
     required: true,
@@ -32,6 +27,22 @@ const UserSchema = new mongoose.Schema({
     required: true,
     lowercase: true,
   },
+  aluno: [{
+    nota: [{
+      name: {
+        type: String,
+      },
+      peso: {
+        type: Number
+      },
+      valornota: {
+        type: Number
+      },
+      idDisciplina: {
+        type: Number
+      },
+    }]
+  }],
   password: {
     type: String,
     required: true,
