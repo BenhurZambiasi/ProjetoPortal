@@ -1,11 +1,11 @@
-import Adm from '../models/adm';
+import User from '../models/user';
 
 class AdmController {
   //criando
   async store(req, res) {
     try {
-      const adm = await Adm.create(req.body);
-      return res.send({ adm });
+      const user = await User.create(req.body);
+      return res.send({ user });
     } catch (err) {
       return res.status(400).send({ error: 'Email ou CPF já cadastrado!' });
     }
@@ -14,18 +14,18 @@ class AdmController {
   async index(req, res) {
     const id = req.params.id;
     if (id == null) {
-      const adm = await Adm.find();
-      return res.send({ adm })
+      const user = await User.find();
+      return res.send({ user })
     }
-    const { _id, firstname, lastname, email } = await Adm.findById({ _id: id })
-    return res.send({ _id, firstname, lastname, email })
+    const { _id, firstname, lastname, email, password } = await User.findById({ _id: id })
+    return res.send({ _id, firstname, lastname, email, password })
   }
   //editando
   async update(req, res) {
     const id = req.params.id;
-    const adm = req.body;
+    const user = req.body;
     const options = { new: true };
-    const updates = await Adm.findByIdAndUpdate(id, adm, options);
+    const updates = await User.findByIdAndUpdate(id, user, options);
     const { _id, firstname, lastname, email, cpf } = updates
     res.send({ _id, firstname, lastname, email, cpf })
   }
@@ -33,7 +33,7 @@ class AdmController {
   //deletando
   async delete(req, res) {
     const id = req.params.id;
-    await Adm.findOneAndRemove({ _id: id })
+    await User.findOneAndRemove({ _id: id })
     return res.status(200).send({ message: 'Usuário deletado com sucesso!!' });
   }
 
