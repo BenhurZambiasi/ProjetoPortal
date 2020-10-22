@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
   usertype: {
     type: String,
     required: true,
+    maxlength: 1,
   },
   email: {
     type: String,
@@ -30,15 +31,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     select: false,
-  },
-  passwordResetToken: {
-    type: String,
-    select: false,
-  },
-  passwordResetExpires: {
-    type: Date,
-    select: false,
-  },
+  }
 });
 
 const User = mongoose.model('User', UserSchema);
