@@ -31,8 +31,8 @@ class UserController {
     const user = req.body;
     const options = { new: true };
     const updates = await User.findByIdAndUpdate(id, user, options);
-    const { _id, firstname, lastname, email, cpf } = updates
-    res.send({ _id, firstname, lastname, email, cpf })
+    const { _id, firstname, lastname, email, cpf, password } = updates
+    res.send({ _id, firstname, lastname, email, cpf, password })
   }
 
   //deletando
