@@ -8,7 +8,7 @@ class DisciplineController {
       const discipline = await Discipline.create(req.body);
       return res.send({ discipline });
     } catch (err) {
-      return res.status(400).send({ error: 'Email ou CPF já cadastrado!' });
+      return res.status(400).send({ error: 'Erro de cadastro!' });
     }
   }
 
