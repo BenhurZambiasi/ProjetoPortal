@@ -1,12 +1,10 @@
 import mongoose from '../../database';
 
-
 const UserSchema = new mongoose.Schema({
   firstname: {
     type: String,
     required: true,
   },
-
   lastname: {
     type: String,
     required: true,
@@ -15,6 +13,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+  },
+  phone: {
+    type: String,
+    required: true,
   },
   usertype: {
     type: String,
@@ -27,22 +29,6 @@ const UserSchema = new mongoose.Schema({
     required: true,
     lowercase: true,
   },
-  aluno: [{
-    nota: [{
-      name: {
-        type: String,
-      },
-      peso: {
-        type: Number
-      },
-      valornota: {
-        type: Number
-      },
-      idDisciplina: {
-        type: Number
-      },
-    }]
-  }],
   password: {
     type: String,
     required: true,

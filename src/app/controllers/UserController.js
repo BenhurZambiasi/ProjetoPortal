@@ -1,6 +1,6 @@
 import User from '../models/user';
 
-class AdmController {
+class UserController {
   //criando
   async store(req, res) {
     try {
@@ -12,13 +12,18 @@ class AdmController {
   }
   //listando
   async index(req, res) {
-    const id = req.params.id;
-    if (id == null) {
-      const user = await User.find();
-      return res.send({ user })
+    try {
+      const id = req.params.id;
+      if (id == null) {
+        const user = await User.find();
+        return res.send({ user })
+      }
+      const { _id, firstname, lastname, email, password } = await User.findById({ _id: id })
+      return res.send({ _id, firstname, lastname, email, password })
+    } catch (error) {
+      return res.send(error)
     }
-    const { _id, firstname, lastname, email, password } = await User.findById({ _id: id })
-    return res.send({ _id, firstname, lastname, email, password })
+
   }
   //editando
   async update(req, res) {
@@ -39,6 +44,6 @@ class AdmController {
 
 
 }
-export default new AdmController();
+export default new UserController();
 
 

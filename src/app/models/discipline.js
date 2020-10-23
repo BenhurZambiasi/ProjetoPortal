@@ -4,7 +4,7 @@ const DisciplineSchema = new mongoose.Schema({
   idTeacher: {
     type: String,
   },
-  conteudo: [
+  content: [
     {
       name: {
         type: String,

@@ -8,6 +8,8 @@ const routes = new Router();
 
 routes.post('/users', UserController.store);
 routes.post('/discipline', DisciplineController.store);
+routes.get('/discipline', DisciplineController.index);
+routes.get('/discipline/:id', DisciplineController.index);
 routes.post('/sessions', SessionController.store);
 routes.post('/sessions/resetpassword', SessionController.resetPassword);
 
