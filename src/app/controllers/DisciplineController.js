@@ -12,6 +12,7 @@ class DisciplineController {
     }
   }
 
+  //listando
   async index(req, res) {
     const id = req.params.id;
     if (id == null) {

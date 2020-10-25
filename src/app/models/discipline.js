@@ -21,7 +21,6 @@ const DisciplineSchema = new mongoose.Schema({
       },
     },
   ],
-
   numberStudents: {
     type: Number,
     required: true,

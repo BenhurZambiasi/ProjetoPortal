@@ -4,6 +4,7 @@ import authConfig from '../../config/auth'
 
 
 class SessionController {
+  //iniciando a sessão
   async store(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).select('+password');
@@ -18,6 +19,8 @@ class SessionController {
     })
     res.send({ user, token })
   }
+
+  //resetando o password
   async resetPassword(req, res) {
     const { email, cpf, password } = req.body;
     const options = { new: true };
