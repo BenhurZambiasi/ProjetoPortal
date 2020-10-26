@@ -16,7 +16,6 @@ class DisciplineController {
     }
   }
 
-
   //listando
   async index(req, res) {
     const id = req.params.id;
@@ -26,8 +25,14 @@ class DisciplineController {
     }
     const discipline = await Discipline.findById({ _id: id }).populate(['contents'])
     return res.send({ discipline })
-
   }
+
+
+
+
+
+
+
 
 
 }
