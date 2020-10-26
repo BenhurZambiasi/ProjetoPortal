@@ -15,11 +15,11 @@ class UserController {
     try {
       const id = req.params.id;
       if (id == null) {
-        const user = await User.find();
+        const user = await User.find().populate('disciplines');
         return res.send({ user })
       }
-      const { _id, firstname, lastname, email, password } = await User.findById({ _id: id })
-      return res.send({ _id, firstname, lastname, email, password })
+      const { _id, firstname, lastname, email, password, disciplines } = await User.findById({ _id: id }).populate('disciplines')
+      return res.send({ _id, firstname, lastname, email, password, disciplines })
     } catch (error) {
       return res.send(error)
     }

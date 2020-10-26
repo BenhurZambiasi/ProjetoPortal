@@ -18,6 +18,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  disciplines: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Discipline',
+    },
+  ],
   email: {
     type: String,
     unique: true,

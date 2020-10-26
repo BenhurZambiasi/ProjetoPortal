@@ -10,13 +10,12 @@ class ContentController {
       const discipline = await Discipline.findById({ _id: id })
 
       const disciplineContent = new Content({ title, description, disciplineId: discipline._id })
-
+      
       discipline.contents.push(disciplineContent)
-
       await discipline.save();
       await disciplineContent.save();
-
       return res.send({ discipline });
+
     } catch (err) {
       console.log(err)
       return res.status(400).send({ error: 'Erro de cadastro!' });
