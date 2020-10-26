@@ -1,24 +1,18 @@
 import mongoose from '../../database';
 
 const DisciplineSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   idTeacher: {
     type: String,
     required: true,
   },
-  content: [
+  contents: [
     {
-      name: {
-        type: String,
-        required: true,
-      },
-      title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Content',
     },
   ],
   numberStudents: {
