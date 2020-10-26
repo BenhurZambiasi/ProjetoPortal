@@ -24,7 +24,7 @@ class DisciplineController {
       const discipline = await Discipline.find().populate(['contents']);
       return res.send({ discipline })
     }
-    const discipline = await Discipline.findById({ _id: id }).populate(['Content'])
+    const discipline = await Discipline.findById({ _id: id }).populate(['contents'])
     return res.send({ discipline })
 
   }

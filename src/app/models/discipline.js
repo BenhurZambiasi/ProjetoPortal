@@ -9,16 +9,16 @@ const DisciplineSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  numberStudents: {
+    type: Number,
+    required: true,
+  },
   contents: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Content',
     },
   ],
-  numberStudents: {
-    type: Number,
-    required: true,
-  },
 });
 
 const Discipline = mongoose.model('Discipline', DisciplineSchema);

@@ -9,7 +9,7 @@ class ContentController {
       const { title, description } = req.body
       const discipline = await Discipline.findById({ _id: id })
 
-      const disciplineContent = new Content({ title, description, discipline: discipline._id })
+      const disciplineContent = new Content({ title, description, disciplineId: discipline._id })
 
       discipline.contents.push(disciplineContent)
 
@@ -28,7 +28,7 @@ class ContentController {
   async index(req, res) {
     const id = req.params.id;
     if (id == null) {
-      const content = await Content.find().populate('disciplineId');
+      const content = await Content.find()
       return res.send({ content })
     }
     const content = await Content.findById({ _id: id })
