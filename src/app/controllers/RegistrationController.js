@@ -12,7 +12,6 @@ class RegistrationController {
     const discipline = await Discipline.findById({ _id: disciplines })
 
     user.disciplines.push(discipline)
-
     await user.save();
     return res.send({ user });
 

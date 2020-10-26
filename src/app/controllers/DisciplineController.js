@@ -1,5 +1,5 @@
-import Content from '../models/content';
 import Discipline from '../models/discipline';
+import User from '../models/user';
 
 class DisciplineController {
   //criando
@@ -18,16 +18,25 @@ class DisciplineController {
 
   //listando
   async index(req, res) {
-    const id = req.params.id;
-    if (id == null) {
-      const discipline = await Discipline.find().populate(['contents']);
+    const { id, usertype } = req.params;
+
+    if (id == null && !usertype) {
+      const discipline = await Discipline.find();
       return res.send({ discipline })
+    }
+    if (usertype == 2) {
+      const discipline = await Discipline.find({ idTeacher: id }).select("name")
+      return res.send({ discipline })
+    }
+    else if (usertype == 3) {
+      const userDiscipline = await User.find({ _id: id }).populate("disciplines").select("firstname");
+      return res.send({ userDiscipline })
     }
     const discipline = await Discipline.findById({ _id: id }).populate(['contents'])
     return res.send({ discipline })
+
+
   }
-
-
 
 
 
