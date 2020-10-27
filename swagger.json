@@ -118,7 +118,7 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/${id}": {
       "put": {
         "tags": [
           "User"
@@ -638,7 +638,7 @@
         }
       }
     },
-    "/content/{id}": {
+    "/content/${id}": {
       "get": {
         "tags": [
           "Content"
@@ -700,7 +700,7 @@
         }
       }
     },
-    "/registration/{id}": {
+    "/registration/${id}": {
       "post": {
         "tags": [
           "Registration"
