@@ -8,11 +8,7 @@ class RegistrationController {
     const { id } = req.params;
     const { disciplines } = req.body;
 
-    const user = await User.findById({ _id: id })
-    const discipline = await Discipline.findById({ _id: disciplines })
-
-    user.disciplines.push(discipline)
-    await user.save();
+    const user = await User.findByIdAndUpdate({ _id: id }, { $push: { disciplines } })
     return res.send({ user });
   }
 
