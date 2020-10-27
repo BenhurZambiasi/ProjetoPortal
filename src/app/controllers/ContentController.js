@@ -10,7 +10,7 @@ class ContentController {
       const discipline = await Discipline.findById({ _id: id })
 
       const disciplineContent = new Content({ title, description, disciplineId: discipline._id })
-      
+
       discipline.contents.push(disciplineContent)
       await discipline.save();
       await disciplineContent.save();
@@ -23,16 +23,15 @@ class ContentController {
   }
 
 
-  //listando
+  //listagem de disciplina com conteudos
   async index(req, res) {
-    const id = req.params.id;
+    const { id } = req.params
     if (id == null) {
-      const content = await Content.find()
-      return res.send({ content })
+      const discipline = await Discipline.find().populate(['contents']);
+      return res.send({ discipline })
     }
-    const content = await Content.findById({ _id: id })
-    return res.send({ content })
-
+    const discipline = await Discipline.findById({ _id: id }).populate(['contents'])
+    return res.send({ discipline })
   }
 
 

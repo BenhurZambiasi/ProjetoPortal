@@ -14,7 +14,6 @@ class RegistrationController {
     user.disciplines.push(discipline)
     await user.save();
     return res.send({ user });
-
   }
 
 

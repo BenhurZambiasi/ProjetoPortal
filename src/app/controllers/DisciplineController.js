@@ -16,25 +16,18 @@ class DisciplineController {
     }
   }
 
-  //listando
+  //listando 
   async index(req, res) {
-    const { id, usertype } = req.params;
+    const { idUser, usertype } = req.params;
 
-    if (id == null && !usertype) {
-      const discipline = await Discipline.find();
-      return res.send({ discipline })
-    }
     if (usertype == 2) {
-      const discipline = await Discipline.find({ idTeacher: id }).select("name")
+      const discipline = await Discipline.find({ idTeacher: idUser }).select("name")
       return res.send({ discipline })
     }
     else if (usertype == 3) {
-      const userDiscipline = await User.find({ _id: id }).populate("disciplines").select("firstname");
+      const userDiscipline = await User.find({ _id: idUser }).populate("disciplines").select("firstname");
       return res.send({ userDiscipline })
     }
-    const discipline = await Discipline.findById({ _id: id }).populate(['contents'])
-    return res.send({ discipline })
-
 
   }
 

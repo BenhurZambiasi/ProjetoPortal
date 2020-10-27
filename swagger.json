@@ -1,0 +1,789 @@
+{
+  "swagger": "2.0",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "host": "https://projetoportal.herokuapp.com/",
+  "basePath": "/portal_aluno-api-v1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Portal do Aluno",
+    "description": "criar e manipula cadastros de usuários e produtos.",
+    "termsOfService": "https://projetoportal.herokuapp.com/portal_aluno-api-v1/termo-uso",
+    "contact": {
+      "name": "Suporte",
+      "url": "https://projetoportal.herokuapp.com/portal_aluno-api-v1/suporte",
+      "email": "benhur_zambiasi@hotmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Cadastra Usuário",
+        "description": "Cadastra um novo usuário",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "UserController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "Silveira"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "00000000000"
+                },
+                "usertype": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              },
+              "required": [
+                "firstname",
+                "lastname",
+                "cpf",
+                "usertype",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "5f92e40573aee50019ccfdc7"
+                },
+                "firstname": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "Silveira"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "00000000000"
+                },
+                "usertype": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Altera as informações do usuário",
+        "description": "Faz a alteranção no cadastro do usuário, porém é necessário estar logado",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "UserController.update",
+        "parameters": [
+          {
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "Silveira"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "00000000000"
+                },
+                "usertype": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "Silveira"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "00000000000"
+                },
+                "usertype": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Faz o login do usuário",
+        "description": "Faz o login do usuário e gera um token de autenticação",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "SessionController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZ"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/sessions/resetpassword": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "reseta a senha do usuário",
+        "description": "faz uma validação no cpf e email do usuário para resetar a senha",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "SessionController.resetPassword",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "00000000000"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123465"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "5f926fd8521d5212eca992ab"
+                },
+                "firstname": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "Zambiasi"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "00000000000"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur@hotmail.com"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    },
+    "/discipline": {
+      "post": {
+        "tags": [
+          "Discipline"
+        ],
+        "summary": "Faz o cadastro da disciplina",
+        "description": "Faz o cadastro da disciplina, informando o nome, o id do professor e a quantidade de alunos",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ProductController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Matemática"
+                },
+                "idTeacher": {
+                  "type": "string",
+                  "example": "5f970ba7d483070bb03b4110"
+                },
+                "numberStudents": {
+                  "type": "string",
+                  "example": "12"
+                }
+              },
+              "required": [
+                "name",
+                "descricao",
+                "logo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "number",
+                  "example": "5f9719c8aa8b4a2784d4240f"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Matemática"
+                },
+                "idTeacher": {
+                  "type": "string",
+                  "example": "5f970ba7d483070bb03b4110"
+                },
+                "numberStudents": {
+                  "type": "string",
+                  "example": "12"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/discipline/${idUser}/${usertype}": {
+      "get": {
+        "tags": [
+          "Discipline"
+        ],
+        "summary": "Lista as disciplinas",
+        "description": "Faz a listagem das diciplinas passado primeiro o id do usuário e depois o usertype",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ProductController.index",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idUser",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "usertype",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "number",
+                  "example": "5f970be3d483070bb03b4112"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Artes"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/content": {
+      "post": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Faz o cadastro do conteudo",
+        "description": "Faz o cadastro do conteudo e adiciona na colletions de disciplina",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ContentController.store",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Linguagem de programação"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "A linguagem de programação é um método padronizado, formado por um conjunto de regras sintáticas e semânticas, de implementação de um código fonte"
+                }
+              },
+              "required": [
+                "title",
+                "description"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "number",
+                  "example": "5f9719c8aa8b4a2784d4240f"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Java"
+                },
+                "idTeacher": {
+                  "type": "string",
+                  "example": "5f970ba7d483070bb03b4110"
+                },
+                "numberStudents": {
+                  "type": "string",
+                  "example": "12"
+                },
+                "content": {
+                  "type": "object",
+                  "example": {
+                    "_id": "5f9719f2aa8b4a2784d42410,",
+                    "title": "Linguagem de programação,",
+                    "description": "A linguagem de programação é um método padronizado, formado por um conjunto de regras sintáticas e semânticas de implementação de um código fonte",
+                    "disciplineId": "5f9719c8aa8b4a2784d4240f"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Faz a listagem de todas as diciplinas",
+        "description": "Faz a listagem de todas as diciplinas e conteúdos",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "ContentController.index",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "number",
+                  "example": "5f9719c8aa8b4a2784d4240f"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Java"
+                },
+                "idTeacher": {
+                  "type": "string",
+                  "example": "5f970ba7d483070bb03b4110"
+                },
+                "numberStudents": {
+                  "type": "string",
+                  "example": "12"
+                },
+                "content": {
+                  "type": "object",
+                  "example": {
+                    "_id": "5f9719f2aa8b4a2784d42410,",
+                    "title": "Linguagem de programação,",
+                    "description": "A linguagem de programação é um método padronizado, formado por um conjunto de regras sintáticas e semânticas de implementação de um código fonte",
+                    "disciplineId": "5f9719c8aa8b4a2784d4240f"
+                  }
+                },
+                "id": {
+                  "type": "number",
+                  "example": "5f9719c8aa8b4a2784d4240f"
+                },
+                "idname": {
+                  "type": "string",
+                  "example": "Java"
+                },
+                "idsTeacher": {
+                  "type": "string",
+                  "example": "5f970ba7d483070bb03b4110"
+                },
+                "numbersStudents": {
+                  "type": "string",
+                  "example": "12"
+                },
+                "contents": {
+                  "type": "object",
+                  "example": {
+                    "_id": "5f9719f2aa8b4a2784d42410,",
+                    "title": "Linguagem de programação,",
+                    "description": "A linguagem de programação é um método padronizado, formado por um conjunto de regras sintáticas e semânticas de implementação de um código fonte",
+                    "disciplineId": "5f9719c8aa8b4a2784d4240f"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/content/{id}": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Faz a listagem de todas as diciplinas",
+        "description": "Faz a listagem de todas as diciplinas e conteúdos",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "contentController.index",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "5f9719c8aa8b4a2784d4240f"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Java"
+                },
+                "idTeacher": {
+                  "type": "string",
+                  "example": "5f970ba7d483070bb03b4110"
+                },
+                "numberStudents": {
+                  "type": "string",
+                  "example": "12"
+                },
+                "content": {
+                  "type": "object",
+                  "example": {
+                    "_id": "5f9719f2aa8b4a2784d42410,",
+                    "title": "Linguagem de programação,",
+                    "description": "A linguagem de programação é um método padronizado, formado por um conjunto de regras sintáticas e semânticas de implementação de um código fonte",
+                    "disciplineId": "5f9719c8aa8b4a2784d4240f"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    },
+    "/registration/{id}": {
+      "post": {
+        "tags": [
+          "Registration"
+        ],
+        "summary": "Faz a listagem de todas as diciplinas",
+        "description": "Faz a listagem de todas as diciplinas e conteúdos",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "RegistrationController.store",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "disciplines": {
+                  "type": "object",
+                  "example": "5f970ba7d483070bb03b4110"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "disciplines": {
+                  "type": "object",
+                  "example": {
+                    "_id": "5f9719c8aa8b4a2784d4240f",
+                    "name": "Java",
+                    "idTeacher": "5f970ba7d483070bb03b4110",
+                    "numberStudents": "12",
+                    "content": {
+                      "_id": "5f9719f2aa8b4a2784d42410,",
+                      "title": "Linguagem de programação,",
+                      "description": "A linguagem de programação é um método padronizado",
+                      "disciplineId": "5f9719c8aa8b4a2784d4240f"
+                    }
+                  }
+                },
+                "firstname": {
+                  "type": "string",
+                  "example": "Benhur"
+                },
+                "lastname": {
+                  "type": "string",
+                  "example": "Zambiasi"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "benhur_zambiasi@hotmail.com"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "12345678912"
+                },
+                "usertype": {
+                  "type": "string",
+                  "example": "3"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "requisição inválida"
+          }
+        }
+      }
+    }
+  }
+}
