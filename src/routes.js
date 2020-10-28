@@ -14,7 +14,7 @@ routes.post('/discipline', DisciplineController.store);
 routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
 
 
-routes.post('/registration/:id', RegistrationController.store);
+routes.post('/registration/:cpf', RegistrationController.store);
 
 routes.post('/content/:id', ContentController.store);
 routes.get('/content/', ContentController.index);
