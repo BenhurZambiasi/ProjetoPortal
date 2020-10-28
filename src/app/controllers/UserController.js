@@ -13,26 +13,30 @@ class UserController {
   //listando
   async index(req, res) {
     try {
-      const id = req.params.id;
+      const { id } = req.params;
       if (id == null) {
-        const user = await User.find().populate('disciplines');
+        const user = await User.find()
         return res.send({ user })
       }
-      const { _id, firstname, lastname, email, password, disciplines } = await User.findById({ _id: id }).populate('disciplines')
-      return res.send({ _id, firstname, lastname, email, password, disciplines })
+      const user = await User.find({ _id: id })
+      return res.send({ user })
     } catch (error) {
-      return res.send(error)
+      return res.status(400).send({ error: "ID inválido, usuário não encontrado" })
     }
 
   }
   //editando
   async update(req, res) {
-    const id = req.params.id;
-    const user = req.body;
-    const options = { new: true };
-    const updates = await User.findByIdAndUpdate(id, user, options);
-    const { _id, firstname, lastname, email, cpf, password } = updates
-    res.send({ _id, firstname, lastname, email, cpf, password })
+    try {
+      const { id } = req.params;
+      const { firstname, lastname, email, cpf, password } = req.body
+      const options = { new: true };
+      const user = await User.findByIdAndUpdate({ _id: id }, { firstname, lastname, email, cpf, password }, options);
+      return res.send({ user })
+
+    } catch (error) {
+      return res.status(400).send({ error: "ID inválido, usuário não encontrado" })
+    }
   }
 
   //deletando

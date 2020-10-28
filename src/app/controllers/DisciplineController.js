@@ -8,34 +8,30 @@ class DisciplineController {
       const { name, idTeacher, numberStudents } = req.body;
       const discipline = await Discipline.create({ name, idTeacher, numberStudents });
       discipline.save();
-
       return res.send({ discipline });
     } catch (err) {
-      console.log(err)
-      return res.status(400).send({ error: 'Erro de cadastro!' });
+      return res.status(400).send({ error: 'Erro de cadastro!, informe os dados corretamente' });
     }
   }
 
   //listando 
   async index(req, res) {
-    const { idUser, usertype } = req.params;
-
-    if (usertype == 2) {
-      const discipline = await Discipline.find({ idTeacher: idUser }).select("name")
-      return res.send({ discipline })
-    }
-    else if (usertype == 3) {
-      const userDiscipline = await User.find({ _id: idUser }).populate("disciplines").select("firstname");
-      return res.send({ userDiscipline })
+    try {
+      const { idUser, usertype } = req.params;
+      if (idUser && usertype == 2) {
+        const discipline = await Discipline.find({ idTeacher: idUser }).select("name")
+        return res.send({ discipline })
+      }
+      else if (idUser && usertype == 3) {
+        const userDiscipline = await User.find({ _id: idUser }).populate("disciplines").select("firstname");
+        return res.send({ userDiscipline })
+      }
+      return res.status(400).send({ error: "Informe o usertype corretamente, 2 para professor e 3 para aluno" })
+    } catch (error) {
+      return res.status(400).send({ error: 'Falha na requisição, preencha os dados corretamente' });
     }
 
   }
-
-
-
-
-
-
 
 }
 export default new DisciplineController();

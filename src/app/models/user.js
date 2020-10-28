@@ -11,19 +11,13 @@ const UserSchema = new mongoose.Schema({
   },
   cpf: {
     type: String,
-    required: true,
     unique: true,
+    required: true,
   },
   usertype: {
     type: String,
     required: true,
   },
-  disciplines: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Discipline',
-    },
-  ],
   email: {
     type: String,
     unique: true,
@@ -34,7 +28,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     select: false,
-  }
+  },
+  disciplines: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Discipline',
+    },
+  ],
 });
 
 const User = mongoose.model('User', UserSchema);
