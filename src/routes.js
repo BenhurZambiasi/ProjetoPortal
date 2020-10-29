@@ -21,6 +21,7 @@ routes.get('/content/', ContentController.index);
 routes.get('/content/:id', ContentController.index);
 
 routes.post('/sessions', SessionController.store);
+routes.post('/sessionsAdm', SessionController.loginAdm);
 routes.post('/sessions/resetpassword', SessionController.resetPassword);
 
 routes.use(authMiddleware);
