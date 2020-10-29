@@ -24,6 +24,8 @@ class SessionController {
     }
   }
 
+
+  
   //resetando o password
   async resetPassword(req, res) {
     try {
