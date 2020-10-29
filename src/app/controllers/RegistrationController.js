@@ -8,7 +8,12 @@ class RegistrationController {
     try {
       const { cpf } = req.params;
       const { disciplines } = req.body;
+
       const user = await User.findOneAndUpdate({ cpf: cpf }, { $push: { disciplines } })
+
+      if (!user) {
+        return res.status(400).send({ error: "CPF incorreto ou não existente" })
+      }
       return res.send({ user });
     } catch (error) {
       return res.status(400).send({ error: "CPF incorreto ou não existente" })

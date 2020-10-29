@@ -7,6 +7,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const porta = process.env.PORT || 5556;
+const porta = process.env.PORT || 5555;
 
 app.listen(porta);

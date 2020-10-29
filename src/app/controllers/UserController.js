@@ -32,8 +32,8 @@ class UserController {
     try {
       const { id } = req.params;
       const { firstname, lastname, email, cpf, password } = req.body
-      const options = { new: true };
-      const user = await User.findByIdAndUpdate({ _id: id }, { firstname, lastname, email, cpf, password }, options);
+
+      const user = await User.findByIdAndUpdate({ _id: id }, { firstname, lastname, email, cpf, password }, { new: true });
       return res.send({ user })
 
     } catch (error) {
