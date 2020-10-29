@@ -24,6 +24,8 @@ class UserController {
       return res.status(400).send({ error: "ID inválido, usuário não encontrado" })
     }
 
+
+
   }
   //editando
   async update(req, res) {
