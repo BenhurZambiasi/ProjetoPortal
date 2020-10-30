@@ -5,10 +5,12 @@ import authConfig from '../../config/auth'
 
 class SessionController {
   //iniciando a sessão
-  async store(req, res) {
+  async loginStudents(req, res) {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email }).select('+password');
+      if (user.usertype != 3)
+        return res.status(400).send({ error: 'Acesso negado, é necessario ser adminstrador' })
       if (!user)
         return res.status(400).send({ error: 'Email inválido ' })
       if (user.password !== password)

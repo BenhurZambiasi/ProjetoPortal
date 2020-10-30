@@ -8,7 +8,7 @@ import RegistrationController from './app/controllers/RegistrationController';
 
 const routes = new Router();
 
-routes.post('/sessions', SessionController.store);
+routes.post('/sessions', SessionController.loginStudents);
 routes.post('/sessions/adm', SessionController.loginAdm);
 routes.post('/sessions/teacher', SessionController.loginTeacher);
 routes.post('/sessions/resetpassword', SessionController.resetPassword);
