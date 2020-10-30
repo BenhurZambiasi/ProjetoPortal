@@ -8,10 +8,11 @@ class ContentController {
       const { id } = req.params
       const { title, description } = req.body
       const discipline = await Discipline.findById({ _id: id })
-      const content = Content.create({ title, description })
+      const content = await Content.create({ title, description });
+      await discipline.contents.push(content)
+      discipline.save();
 
-      discipline.contents.push(content)
-      return res.send({ content })
+      return res.send({ discipline })
 
     } catch (err) {
       return res.status(400).send({ error: 'Erro de cadastro!' });
