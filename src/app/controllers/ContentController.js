@@ -7,28 +7,31 @@ class ContentController {
     try {
       const { id } = req.params
       const { title, description } = req.body
-      const discipline = await Discipline.findByIdAndUpdate({ _id: id }, { $push: { title, description } })
+      const discipline = await Discipline.findById({ _id: id })
+      const content = Content.create({ title, description })
 
-      return res.send({ discipline });
+      discipline.contents.push(content)
+      return res.send({ content })
 
     } catch (err) {
       return res.status(400).send({ error: 'Erro de cadastro!' });
     }
   }
 
+
+
   //listagem de disciplina com conteudos
   async index(req, res) {
     try {
       const { id } = req.params
       if (id == null) {
-        const discipline = await Discipline.find().populate(['contents']);
+        const discipline = await Discipline.find().populate(["contents"])
         return res.send({ discipline })
       }
-      const discipline = await Discipline.findById({ _id: id }).populate(['contents'])
+      const discipline = await Discipline.findById({ _id: id }).populate(["contents"])
       return res.send({ discipline })
-
     } catch (error) {
-      return res.status(400).send({ error: 'Id inválido!' });
+      return res.status(400).send({ error: 'Erro de cadastro!' });
     }
   }
 

@@ -35,6 +35,9 @@ const UserSchema = new mongoose.Schema({
       ref: 'Discipline',
     },
   ],
+  notas: [{
+    type: String
+  }]
 });
 
 const User = mongoose.model('User', UserSchema);
