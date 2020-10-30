@@ -30,7 +30,6 @@ class DisciplineController {
     } catch (error) {
       return res.status(400).send({ error: 'Falha na requisição, preencha os dados corretamente' });
     }
-
   }
 
 }
