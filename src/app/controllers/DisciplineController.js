@@ -15,18 +15,28 @@ class DisciplineController {
   }
 
   //listando 
-  async index(req, res) {
+  async listStudent(req, res) {
+    try {
+      const { idUser, usertype } = req.params;
+      if (idUser && usertype == 3) {
+        const userDiscipline = await User.find({ _id: idUser }).populate("disciplines").select("firstname");
+        return res.send({ userDiscipline })
+      }
+      return res.status(400).send({ error: "Informe o usertype corretamente, 3 para aluno" })
+    } catch (error) {
+      return res.status(400).send({ error: 'Falha na requisição, preencha os dados corretamente' });
+    }
+
+  }
+
+  async listTeacher(req, res) {
     try {
       const { idUser, usertype } = req.params;
       if (idUser && usertype == 2) {
         const discipline = await Discipline.find({ idTeacher: idUser }).select("name")
         return res.send({ discipline })
-      }
-      else if (idUser && usertype == 3) {
-        const userDiscipline = await User.find({ _id: idUser }).populate("disciplines").select("firstname");
-        return res.send({ userDiscipline })
-      }
-      return res.status(400).send({ error: "Informe o usertype corretamente, 2 para professor e 3 para aluno" })
+      };
+      return res.status(400).send({ error: "Informe o usertype corretamente, 2 para professor" })
     } catch (error) {
       return res.status(400).send({ error: 'Falha na requisição, preencha os dados corretamente' });
     }

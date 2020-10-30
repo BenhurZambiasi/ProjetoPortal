@@ -11,8 +11,8 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 
 routes.post('/discipline', DisciplineController.store);
-routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
-
+routes.get('/disciplineStud/:idUser/:usertype', DisciplineController.listStudent);
+routes.get('/disciplineTeacher/:idUser/:usertype', DisciplineController.listTeacher);
 
 routes.post('/registration/:cpf', RegistrationController.store);
 
