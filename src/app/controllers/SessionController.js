@@ -10,7 +10,7 @@ class SessionController {
       const { email, password } = req.body;
       const user = await User.findOne({ email }).select('+password');
       if (user.usertype != 3)
-        return res.status(400).send({ error: 'Acesso negado, é necessario ser adminstrador' })
+        return res.status(400).send({ error: 'Acesso negado' })
       if (!user)
         return res.status(400).send({ error: 'Email inválido ' })
       if (user.password !== password)
