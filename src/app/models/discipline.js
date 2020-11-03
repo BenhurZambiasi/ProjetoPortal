@@ -20,6 +20,22 @@ const DisciplineSchema = new mongoose.Schema({
       ref: 'Content',
     },
   ],
+  notas: [{
+    nomeNota: {
+      type: String,
+    },
+    pesoNota: {
+      type: Number,
+    },
+    alunos: [{
+      idAlunos: {
+        type: String
+      },
+      valorNota: {
+        type: Number,
+      },
+    }]
+  }]
 });
 
 const Discipline = mongoose.model('Discipline', DisciplineSchema);

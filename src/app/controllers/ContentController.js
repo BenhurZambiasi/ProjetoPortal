@@ -20,13 +20,12 @@ class ContentController {
   }
 
 
-
   //listagem de disciplina com conteudos
   async index(req, res) {
     try {
       const { id } = req.params
       if (id == null) {
-        const discipline = await Discipline.find().populate(["contents"])
+        const discipline = await Discipline.find()
         return res.send({ discipline })
       }
       const discipline = await Discipline.findById({ _id: id }).populate(["contents"])
