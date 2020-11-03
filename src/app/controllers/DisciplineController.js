@@ -32,7 +32,21 @@ class DisciplineController {
     }
   }
 
+
+  async lista(req, res) {
+    const { idDisciplina } = req.params;
+
+    const user = await User.find({ disciplines: idDisciplina })
+
+
+    return res.send(user)
+
+
+
+  }
+
 }
 export default new DisciplineController();
+
 
 

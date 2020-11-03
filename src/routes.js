@@ -5,6 +5,7 @@ import authMiddleware from './app/middlewares/auth';
 import DisciplineController from './app/controllers/DisciplineController';
 import ContentController from './app/controllers/ContentController';
 import RegistrationController from './app/controllers/RegistrationController';
+import NotaController from './app/controllers/NotaController';
 
 const routes = new Router();
 
@@ -22,7 +23,12 @@ routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
 routes.post('/discipline', DisciplineController.store);
+routes.get('/discipline/:id', DisciplineController.lista);
 routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
+routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
+
+
+routes.post('/nota/:idDisciplina', NotaController.store);
 
 routes.post('/content/:id', ContentController.store);
 routes.get('/content/', ContentController.index);
