@@ -1,5 +1,3 @@
-
-import Discipline from '../models/discipline';
 import User from '../models/user';
 
 class RegistrationController {
@@ -9,8 +7,10 @@ class RegistrationController {
       const { cpf } = req.params;
       const { disciplines } = req.body;
 
-      const diciplinas = await Discipline.find({ _id: { $in: disciplines } })
-      if (diciplinas) {
+      const disciplinas = await User.findOne({ cpf: cpf, disciplines: { $in: disciplines } })
+
+      if (disciplinas) {
+        console.log(disciplinas)
         return res.status(400).send({ error: "Disciplina já cadastrada" })
       }
       const user = await User.findOneAndUpdate({ cpf: cpf }, { $push: { disciplines } }, { new: true })
