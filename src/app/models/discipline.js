@@ -28,8 +28,12 @@ const DisciplineSchema = new mongoose.Schema({
       type: Number,
     },
     alunos: [{
+      idNotas:{
+
+      },
       idAlunos: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
       },
       valorNota: {
         type: Number,
