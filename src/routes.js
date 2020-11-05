@@ -14,6 +14,7 @@ routes.post('/sessions/adm', SessionController.loginAdm);
 routes.post('/sessions/teacher', SessionController.loginTeacher);
 routes.post('/sessions/resetpassword', SessionController.resetPassword);
 
+routes.get('/listadeAlunos', DisciplineController.listaAlunos);
 routes.use(authMiddleware);
 
 routes.post('/users', UserController.store);
@@ -23,12 +24,14 @@ routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
 routes.post('/discipline', DisciplineController.store);
-routes.get('/discipline/:id', DisciplineController.lista);
 routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
 routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
 
 
 routes.post('/nota/:idDisciplina', NotaController.store);
+routes.get('/nota/', NotaController.index);
+
+
 
 routes.post('/content/:id', ContentController.store);
 routes.get('/content/', ContentController.index);

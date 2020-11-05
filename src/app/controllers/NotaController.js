@@ -9,6 +9,18 @@ class NotaController {
     return res.send({ disciplines })
   }
 
+  async index(req, res) {
+    const disciplines = await Discipline.find();
+    var result = [];
+    disciplines.forEach(discipline => {
+      result.push({ discipline: discipline.name, nota: discipline.notas});
+    });
+
+    return res.send({ result })
+  }
+
+
+
 }
 export default new NotaController();
 

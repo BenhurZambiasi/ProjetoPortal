@@ -1,7 +1,7 @@
 import User from '../models/user';
 
 class UserController {
-  //criando
+  //criando usuário
   async store(req, res) {
     try {
       const user = await User.create(req.body);
@@ -10,7 +10,7 @@ class UserController {
       return res.status(400).send({ error: 'Email ou CPF já cadastrado!' });
     }
   }
-  //listando
+  //listando todos os usuários ou somente pelo ID
   async index(req, res) {
     try {
       const { id } = req.params;

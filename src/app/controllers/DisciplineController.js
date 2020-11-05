@@ -2,7 +2,7 @@ import Discipline from '../models/discipline';
 import User from '../models/user';
 
 class DisciplineController {
-  //criando
+  //criando as disciplinas
   async store(req, res) {
     try {
       const { name, idTeacher, numberStudents } = req.body;
@@ -14,7 +14,7 @@ class DisciplineController {
     }
   }
 
-  //listando 
+  //listagem de disciplina por professor e por aluno
   async index(req, res) {
     try {
       const { idUser, usertype } = req.params;
@@ -32,17 +32,12 @@ class DisciplineController {
     }
   }
 
+  //listagem dos alunos que contem a mesma disciplina
+  async listaAlunos(req, res) {
 
-  async lista(req, res) {
-    const { idDisciplina } = req.params;
-
-    const user = await User.find({ disciplines: idDisciplina })
-
-
-    return res.send(user)
-
-
-
+    const { disciplines } = req.body;
+    const disciplinas = await User.find({ disciplines: { $in: disciplines } })
+    return res.send({ disciplinas })
   }
 
 }
