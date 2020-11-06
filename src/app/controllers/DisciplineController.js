@@ -35,8 +35,9 @@ class DisciplineController {
   //listagem dos alunos que contem a mesma disciplina
   async listaAlunos(req, res) {
 
-    const { disciplines } = req.body;
-    const disciplinas = await User.find({ disciplines: { $in: disciplines } })
+    const { discipline } = req.params;
+    console.log(discipline)
+    const disciplinas = await User.find({ disciplines: discipline })
     return res.send({ disciplinas })
   }
 

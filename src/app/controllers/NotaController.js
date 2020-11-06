@@ -9,6 +9,12 @@ class NotaController {
     return res.send({ disciplines })
   }
 
+
+
+
+
+  
+
   async index(req, res) {
     const disciplines = await Discipline.find();
     var result = [];
