@@ -14,7 +14,7 @@ routes.post('/sessions/adm', SessionController.loginAdm);
 routes.post('/sessions/teacher', SessionController.loginTeacher);
 routes.post('/sessions/resetpassword', SessionController.resetPassword);
 
-routes.use(authMiddleware);
+
 
 routes.post('/users', UserController.store);
 routes.get('/users/:id', UserController.index);
@@ -35,7 +35,7 @@ routes.get('/content/', ContentController.index);
 routes.get('/content/:id', ContentController.index);
 
 routes.post('/registration/:cpf', RegistrationController.store);
-
+routes.use(authMiddleware);
 
 
 
