@@ -1,13 +1,14 @@
-import mongoose from '../../database';
+import mongoose from "../../database";
 
 const DisciplineSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
-  idTeacher: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   numberStudents: {
@@ -17,27 +18,31 @@ const DisciplineSchema = new mongoose.Schema({
   contents: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Content',
+      ref: "Content",
     },
   ],
-  notas: [{
-    nomeNota: {
-      type: String,
-    },
-    pesoNota: {
-      type: Number,
-    },
-    alunos: [{
-      idAlunos: {
-        type: String
+  notas: [
+    {
+      nomeNota: {
+        type: String,
       },
-      valorNota: {
+      pesoNota: {
         type: Number,
       },
-    }]
-  }]
+      alunos: [
+        {
+          idAlunos: {
+            type: String,
+          },
+          valorNota: {
+            type: Number,
+          },
+        },
+      ],
+    },
+  ],
 });
 
-const Discipline = mongoose.model('Discipline', DisciplineSchema);
+const Discipline = mongoose.model("Discipline", DisciplineSchema);
 
 export default Discipline;

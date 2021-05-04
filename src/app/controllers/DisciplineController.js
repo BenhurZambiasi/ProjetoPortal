@@ -19,7 +19,7 @@ class DisciplineController {
     try {
       const { idUser, usertype } = req.params;
       if (idUser && usertype == 2) {
-        const discipline = await Discipline.find({ idTeacher: idUser }).select("name")
+        const discipline = await Discipline.find({ user: idUser }).select("name")
         return res.send({ discipline })
       }
       else if (idUser && usertype == 3) {
