@@ -25,7 +25,7 @@ routes.delete('/users/:id', UserController.delete);
 routes.post('/discipline', DisciplineController.store);
 routes.get('/discipline/:id', DisciplineController.lista);
 routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
-routes.get('/discipline/:idUser/:usertype', DisciplineController.index);
+
 
 
 routes.post('/nota/:idDisciplina', NotaController.store);
